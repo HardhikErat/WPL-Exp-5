@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Registration Form</title>
+
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            margin: 40px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #2a5298;
+            margin-top: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #2a5298;
+            outline: none;
+        }
+
+        .gender {
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #2a5298;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1e3c72;
+        }
+
+        hr {
+            margin: 20px 0;
+        }
+    </style>
+
+    <script>
+        function validateForm(form) {
+            let name = form.name.value;
+            let email = form.email.value;
+            let password = form.password.value;
+
+            if (name === "" || email === "" || password === "") {
+                alert("All fields are required!");
+                return false;
+            }
+
+            let pattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.match(pattern)) {
+                alert("Enter valid email!");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>Registration Form</h2>
+
+        <!-- POST -->
+        <h3>Using POST</h3>
+        <form action="post_registration.php" method="POST" onsubmit="return validateForm(this)">
+            <input type="text" name="name" placeholder="Enter Name">
+            <input type="text" name="email" placeholder="Enter Email">
+            <input type="password" name="password" placeholder="Enter Password">
+
+            <div class="gender">
+                Gender:
+                <input type="radio" name="gender" value="Male"> Male
+                <input type="radio" name="gender" value="Female"> Female
+            </div>
+
+            <button type="submit">Submit via POST</button>
+        </form>
+
+        <hr>
+
+        <!-- GET -->
+        <h3>Using GET</h3>
+        <form action="get_registration.php" method="GET" onsubmit="return validateForm(this)">
+            <input type="text" name="name" placeholder="Enter Name">
+            <input type="text" name="email" placeholder="Enter Email">
+            <input type="password" name="password" placeholder="Enter Password">
+
+            <button type="submit">Submit via GET</button>
+        </form>
+
+        <hr>
+
+        <!-- REQUEST -->
+        <h3>Using REQUEST</h3>
+        <form action="request_registration.php" method="POST" onsubmit="return validateForm(this)">
+            <input type="text" name="name" placeholder="Enter Name">
+            <input type="text" name="email" placeholder="Enter Email">
+            <input type="password" name="password" placeholder="Enter Password">
+
+            <button type="submit">Submit via REQUEST</button>
+        </form>
+
+    </div>
+
+</body>
+
+</html>
